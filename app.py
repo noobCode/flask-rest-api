@@ -3,18 +3,23 @@
 # ADD THIS LINE:
 from marshmallow import ValidationError
 from models import db, User, UserSchema, UserResponseSchema
-from flask import Flask, request, jsonify
+from flask import Flask, request, jsonify, render_template, send_from_directory
 from datetime import timedelta
 from flask_jwt_extended import create_access_token
 from flask_jwt_extended import create_refresh_token
 from flask_jwt_extended import get_jwt_identity
 from flask_jwt_extended import jwt_required
 from flask_jwt_extended import JWTManager
+from flask_cors import CORS
+import os
 
 
 # Create Flask application instance
 # Flask is the web framework that handles HTTP requests and responses
-app = Flask(__name__)
+app = Flask(__name__, static_folder='static', static_url_path='/static')
+
+# Enable CORS for frontend requests
+CORS(app)
 
 # Configure database connection
 # SQLite is a simple file-based database (good for development/small projects)
@@ -423,7 +428,7 @@ def delete_user(id):
 
 @app.route('/')
 def home():
-    return {'message': 'API is running'}
+    return send_from_directory('static', 'index.html')
 
 
 

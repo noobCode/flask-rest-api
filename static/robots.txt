@@ -1,0 +1,25 @@
+# robots.txt - Search Engine Crawler Instructions
+# This file tells search engines which pages to crawl and index
+
+User-agent: *
+Allow: /
+Allow: /static/
+
+# Disallow private/admin pages if needed
+# Disallow: /admin/
+# Disallow: /private/
+
+# Specify sitemap location
+Sitemap: http://localhost:5000/sitemap.xml
+
+# Crawl delay (optional - respect server resources)
+Crawl-delay: 1
+
+# Specific rules for major search engines
+User-agent: Googlebot
+Allow: /
+Crawl-delay: 0
+
+User-agent: Bingbot
+Allow: /
+Crawl-delay: 1
